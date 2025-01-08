@@ -2,6 +2,7 @@ import {
   IsEmail,
   IsEnum,
   IsNotEmpty,
+  IsOptional,
   IsString,
   MinLength,
 } from 'class-validator';
@@ -13,14 +14,22 @@ export class CreateUserDto {
   email: string;
 
   @IsString()
-  @MinLength(6)
+  @MinLength(6, {
+    message: 'Password must be longer than or equal to 6 characters',
+  })
   password: string;
 
-  @IsEnum(UserRole)
+  @IsEnum(UserRole, {
+    message: 'Impossible to create user with such role',
+  })
   readonly role: UserRole;
 
-  @IsEnum(UserPermissions)
-  readonly permissions: UserPermissions;
+  @IsOptional()
+  @IsEnum(UserPermissions, {
+    each: true,
+    message: 'Impossible to create user with such permissions',
+  })
+  readonly permissions?: UserPermissions[];
 
   @IsString()
   @IsNotEmpty()
