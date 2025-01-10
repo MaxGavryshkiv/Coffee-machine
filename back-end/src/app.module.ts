@@ -12,6 +12,7 @@ import { SalesModule } from './sales/sales.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
+      envFilePath: `.env.${process.env.NODE_ENV}`,
       isGlobal: true,
     }),
     MongooseModule.forRootAsync({
