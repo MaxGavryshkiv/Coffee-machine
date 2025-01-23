@@ -1,18 +1,20 @@
-// import { IsEnum, IsNotEmpty, IsNumber, IsString } from 'class-validator';
-// // import { Transform, TransformFnParams } from 'class-transformer';
+import { IsEnum, IsInt, IsNotEmpty, IsString, Min } from 'class-validator';
+// import { Transform, TransformFnParams } from 'class-transformer';
 
-// export class CreateMaterialDto {
-//   @IsString()
-//   @IsNotEmpty()
-//   name: string;
+export class CreateMaterialDto {
+  @IsString()
+  @IsNotEmpty()
+  name: string;
 
-//   @IsNumber()
-//   @IsNotEmpty()
-//   quantity: number;
+  @IsInt()
+  @Min(0)
+  @IsNotEmpty()
+  quantity: number;
 
-//   @IsEnum(['грам', 'шт.'])
-//   unit: 'грам' | 'шт.';
+  @IsEnum(['грам', 'шт.'])
+  @IsNotEmpty()
+  unit: 'грам' | 'шт.';
 
-//   @IsString()
-//   category;
-// }
+  @IsString()
+  category: string;
+}

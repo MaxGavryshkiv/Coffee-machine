@@ -14,6 +14,14 @@ export class Material extends Document {
 
   @Prop({ required: true, type: String })
   category: string;
+
+  @Prop({ default: true })
+  isEnough: boolean;
 }
 
 export const MaterialSchema = SchemaFactory.createForClass(Material);
+
+MaterialSchema.pre('save', function (next) {
+  this.isEnough = this.quantity > 0;
+  next();
+});

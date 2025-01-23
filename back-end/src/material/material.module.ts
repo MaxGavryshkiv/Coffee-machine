@@ -2,11 +2,12 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { MaterialController } from './material.controller';
 import { MaterialService } from './material.service';
+import { Material, MaterialSchema } from './schemas/material.schema';
 
 @Module({
   imports: [
     MongooseModule.forFeature([
-      // { name: Location.name, schema: LocationSchema },
+      { name: Material.name, schema: MaterialSchema },
     ]),
   ],
   controllers: [MaterialController],
