@@ -9,8 +9,8 @@ export class Material extends Document {
   @Prop({ required: true, type: Number })
   quantity: number;
 
-  @Prop({ required: true, type: String, enum: ['грам', 'шт.'] })
-  unit: 'грам' | 'шт.';
+  @Prop({ required: true, type: String, enum: ['грам', 'шт', 'мл'] })
+  unit: 'грам' | 'шт' | 'мл';
 
   @Prop({ required: true, type: String })
   category: string;

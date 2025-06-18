@@ -11,9 +11,9 @@ export class CreateMaterialDto {
   @IsNotEmpty()
   quantity: number;
 
-  @IsEnum(['грам', 'шт.'])
+  @IsEnum(['грам', 'шт', 'мл'])
   @IsNotEmpty()
-  unit: 'грам' | 'шт.';
+  unit: 'грам' | 'шт' | 'мл';
 
   @IsString()
   category: string;
