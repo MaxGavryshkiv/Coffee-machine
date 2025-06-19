@@ -20,6 +20,7 @@ export class User {
   name: string;
 
   @Prop({
+    type: [String],
     required: true,
     enum: UserPermissions,
     default: [UserPermissions.MakeSales],
