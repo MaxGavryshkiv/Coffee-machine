@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
+import { PassportModule } from '@nestjs/passport';
 import { MaterialController } from './material.controller';
 import { MaterialService } from './material.service';
 import { Material, MaterialSchema } from './schemas/material.schema';
