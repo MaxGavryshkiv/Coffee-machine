@@ -4,6 +4,7 @@ import { PassportModule } from '@nestjs/passport';
 import { MaterialController } from './material.controller';
 import { MaterialService } from './material.service';
 import { Material, MaterialSchema } from './schemas/material.schema';
+import { PassportModule } from '@nestjs/passport';
 
 @Module({
   imports: [
