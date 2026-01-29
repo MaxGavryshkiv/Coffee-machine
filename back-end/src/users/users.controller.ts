@@ -16,8 +16,8 @@ import { UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { Roles } from '../auth/roles.decorator';
 import { RolesGuard } from '../auth/roles.guard';
-import { Permissions } from 'src/auth/permissions.decorator';
-import { PermissionsGuard } from 'src/auth/permissions.guard';
+import { Permissions } from '../auth/permissions.decorator';
+import { PermissionsGuard } from '../auth/permissions.guard';
 
 @UseGuards(AuthGuard('jwt'), RolesGuard, PermissionsGuard)
 @Permissions('edit-users')
