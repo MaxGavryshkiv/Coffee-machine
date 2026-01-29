@@ -1,41 +1,31 @@
-import { Test, TestingModule } from '@nestjs/testing';
+import { createTestApp, closeTestApp } from '../utils/test-app';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
-import { AppModule } from '../src/app.module';
-import { getMongoUri, stopMongo } from './mongo-memory';
 import { JwtService } from '@nestjs/jwt';
+import { UsersService } from '../../src/users/users.service';
+import { UserRole } from '../../src/users/roles.enum';
 
 describe('Users (e2e)', () => {
   let app: INestApplication;
-
   let adminToken: string;
 
   beforeAll(async () => {
-    const mongoUri = await getMongoUri();
+    app = await createTestApp();
 
-    process.env.MONGODB_URI = mongoUri;
-
-    const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [AppModule],
-    }).compile();
-
-    app = moduleFixture.createNestApplication();
-    await app.init();
-
-    const admin = await app.get(UserService).create({
+    const admin = await app.get(UsersService).create({
       email: 'admin@example.com',
       password: 'adminpass',
-      role: 'owner',
+      role: UserRole.Owner,
       name: 'Admin',
     });
 
-    const jwtService = moduleFixture.get(JwtService);
+    const jwtService = app.get(JwtService);
     adminToken = jwtService.sign({ userId: admin._id, role: admin.role });
   }, 30000);
 
   afterAll(async () => {
     if (app) await app.close();
-    await stopMongo();
+    await closeTestApp(app);
   });
 
   it('should create user', async () => {

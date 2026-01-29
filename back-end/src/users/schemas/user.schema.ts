@@ -8,6 +8,7 @@ export type UserDocument = User & Document;
 
 @Schema()
 export class User {
+  [x: string]: any;
   @Prop({ required: true, unique: true })
   email: string;
 
